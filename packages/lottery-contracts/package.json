@@ -1,0 +1,10 @@
+{
+  "name": "@robertprp/lottery-contracts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "UNLICENSED",
+  "description": "Lottery contracts",
+  "dependencies": {
+    "bignumber.js": "^9.1.2"
+  }
+}

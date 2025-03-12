@@ -1,0 +1,65 @@
+import type { BaseContract, BigNumber, BigNumberish, BytesLike, CallOverrides, ContractTransaction, Overrides, PopulatedTransaction, Signer, utils } from "ethers";
+import type { FunctionFragment, Result, EventFragment } from "@ethersproject/abi";
+import type { Listener, Provider } from "@ethersproject/providers";
+import type { TypedEventFilter, TypedEvent, TypedListener, OnEvent, PromiseOrValue } from "../../common";
+export interface IGelatoVRFConsumerInterface extends utils.Interface {
+    functions: {
+        "fulfillRandomness(uint256,bytes)": FunctionFragment;
+    };
+    getFunction(nameOrSignatureOrTopic: "fulfillRandomness"): FunctionFragment;
+    encodeFunctionData(functionFragment: "fulfillRandomness", values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BytesLike>]): string;
+    decodeFunctionResult(functionFragment: "fulfillRandomness", data: BytesLike): Result;
+    events: {
+        "RequestedRandomness(uint256,bytes)": EventFragment;
+    };
+    getEvent(nameOrSignatureOrTopic: "RequestedRandomness"): EventFragment;
+}
+export interface RequestedRandomnessEventObject {
+    round: BigNumber;
+    data: string;
+}
+export type RequestedRandomnessEvent = TypedEvent<[
+    BigNumber,
+    string
+], RequestedRandomnessEventObject>;
+export type RequestedRandomnessEventFilter = TypedEventFilter<RequestedRandomnessEvent>;
+export interface IGelatoVRFConsumer extends BaseContract {
+    connect(signerOrProvider: Signer | Provider | string): this;
+    attach(addressOrName: string): this;
+    deployed(): Promise<this>;
+    interface: IGelatoVRFConsumerInterface;
+    queryFilter<TEvent extends TypedEvent>(event: TypedEventFilter<TEvent>, fromBlockOrBlockhash?: string | number | undefined, toBlock?: string | number | undefined): Promise<Array<TEvent>>;
+    listeners<TEvent extends TypedEvent>(eventFilter?: TypedEventFilter<TEvent>): Array<TypedListener<TEvent>>;
+    listeners(eventName?: string): Array<Listener>;
+    removeAllListeners<TEvent extends TypedEvent>(eventFilter: TypedEventFilter<TEvent>): this;
+    removeAllListeners(eventName?: string): this;
+    off: OnEvent<this>;
+    on: OnEvent<this>;
+    once: OnEvent<this>;
+    removeListener: OnEvent<this>;
+    functions: {
+        fulfillRandomness(randomness: PromiseOrValue<BigNumberish>, data: PromiseOrValue<BytesLike>, overrides?: Overrides & {
+            from?: PromiseOrValue<string>;
+        }): Promise<ContractTransaction>;
+    };
+    fulfillRandomness(randomness: PromiseOrValue<BigNumberish>, data: PromiseOrValue<BytesLike>, overrides?: Overrides & {
+        from?: PromiseOrValue<string>;
+    }): Promise<ContractTransaction>;
+    callStatic: {
+        fulfillRandomness(randomness: PromiseOrValue<BigNumberish>, data: PromiseOrValue<BytesLike>, overrides?: CallOverrides): Promise<void>;
+    };
+    filters: {
+        "RequestedRandomness(uint256,bytes)"(round?: null, data?: null): RequestedRandomnessEventFilter;
+        RequestedRandomness(round?: null, data?: null): RequestedRandomnessEventFilter;
+    };
+    estimateGas: {
+        fulfillRandomness(randomness: PromiseOrValue<BigNumberish>, data: PromiseOrValue<BytesLike>, overrides?: Overrides & {
+            from?: PromiseOrValue<string>;
+        }): Promise<BigNumber>;
+    };
+    populateTransaction: {
+        fulfillRandomness(randomness: PromiseOrValue<BigNumberish>, data: PromiseOrValue<BytesLike>, overrides?: Overrides & {
+            from?: PromiseOrValue<string>;
+        }): Promise<PopulatedTransaction>;
+    };
+}

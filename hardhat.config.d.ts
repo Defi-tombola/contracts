@@ -1,0 +1,11 @@
+import { HardhatUserConfig } from "hardhat/config";
+import "@gelatonetwork/web3-functions-sdk/hardhat-plugin";
+import "@matterlabs/hardhat-zksync-solc";
+import "@matterlabs/hardhat-zksync-verify";
+import "@nomiclabs/hardhat-ethers";
+import "@nomiclabs/hardhat-waffle";
+import "@typechain/hardhat";
+import "hardhat-deploy";
+import "hardhat-abi-exporter";
+declare const config: HardhatUserConfig;
+export default config;

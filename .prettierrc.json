@@ -1,0 +1,9 @@
+{
+  "overrides": [
+    {
+      "options": {
+        "compiler": "0.8.22"
+      }
+    }
+  ]
+}

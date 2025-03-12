@@ -1,0 +1,7 @@
+import type * as proxySol from "./Proxy.sol";
+export type { proxySol };
+import type * as vendor from "./vendor";
+export type { vendor };
+export type { House } from "./House";
+export type { IHouse } from "./IHouse";
+export type { LotteryProvider } from "./LotteryProvider";
